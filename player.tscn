@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjdpdiia1a16d"]
+[gd_scene load_steps=3 format=3 uid="uid://bjdpdiia1a16d"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_tsyaq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gf3ia"]
 size = Vector2(42, 42)
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_tsyaq")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -21,3 +24,5 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
