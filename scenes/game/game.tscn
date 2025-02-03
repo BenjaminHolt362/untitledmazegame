@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3im2bpvbq2eb"]
+
+[ext_resource type="PackedScene" uid="uid://bjdpdiia1a16d" path="res://player.tscn" id="1_l8qdd"]
+[ext_resource type="PackedScene" uid="uid://66pbg2nmda4s" path="res://gun.tscn" id="2_8p46i"]
+
+[node name="Game" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_l8qdd")]
+metadata/_edit_group_ = true
+
+[node name="Gun" parent="Player" instance=ExtResource("2_8p46i")]
+position = Vector2(31, 2)

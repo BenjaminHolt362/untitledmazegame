@@ -1,3 +1,9 @@
+# Player scene (save as player.tscn)
+# Scene structure:
+# - CharacterBody2D (root node)
+#   - ColorRect
+
+# Attach this script to the CharacterBody2D node
 extends CharacterBody2D
 
 @export var speed: int = 300

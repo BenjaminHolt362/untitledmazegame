@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://66pbg2nmda4s"]
+
+[ext_resource type="Script" path="res://gun.gd" id="1_ucppv"]
+[ext_resource type="PackedScene" uid="uid://cqvx7pm5t7ymo" path="res://bullet.tscn" id="2_awkyw"]
+
+[node name="Gun" type="Node2D"]
+scale = Vector2(0.505, 0.505)
+script = ExtResource("1_ucppv")
+bullet_scene = ExtResource("2_awkyw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.431373, 0.662745, 0.662745, 1)
