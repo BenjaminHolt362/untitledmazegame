@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3im2bpvbq2eb"]
+[gd_scene load_steps=5 format=3 uid="uid://d3im2bpvbq2eb"]
 
-[ext_resource type="PackedScene" uid="uid://bjdpdiia1a16d" path="res://player.tscn" id="1_l8qdd"]
-[ext_resource type="PackedScene" uid="uid://66pbg2nmda4s" path="res://gun.tscn" id="2_8p46i"]
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_1u5r2"]
+[ext_resource type="PackedScene" uid="uid://bjdpdiia1a16d" path="res://scenes/player/player.tscn" id="1_l8qdd"]
+[ext_resource type="PackedScene" uid="uid://66pbg2nmda4s" path="res://scenes/gun/gun.tscn" id="2_8p46i"]
+[ext_resource type="PackedScene" uid="uid://bxatid4h34ro" path="res://scenes/enemy/enemy_spawner.tscn" id="3_oror7"]
 
 [node name="Game" type="Node"]
+script = ExtResource("1_1u5r2")
 
 [node name="Player" parent="." instance=ExtResource("1_l8qdd")]
-metadata/_edit_group_ = true
 
 [node name="Gun" parent="Player" instance=ExtResource("2_8p46i")]
-position = Vector2(31, 2)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_oror7")]
+script = null

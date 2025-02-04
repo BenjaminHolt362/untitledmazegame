@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxatid4h34ro"]
+
+[ext_resource type="Script" path="res://scenes/enemy/enemy_spawner.gd" id="1_nsh0i"]
+[ext_resource type="PackedScene" uid="uid://cxrrdi7i1bd0k" path="res://scenes/enemy/basic/basic_enemy.tscn" id="2_5qonk"]
+[ext_resource type="PackedScene" uid="uid://ksvq7rxs5su8" path="res://scenes/enemy/ranged/ranged_enemy.tscn" id="3_om22r"]
+[ext_resource type="PackedScene" uid="uid://b5gvimr5vxvwy" path="res://scenes/enemy/tank/tank_enemy.tscn" id="4_bcink"]
+
+[sub_resource type="Curve2D" id="Curve2D_fvll5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -128, -128, 0, 0, 0, 0, 128, -128, 0, 0, 0, 0, 128, 120, 0, 0, 0, 0, -128, 120, 0, 0, 0, 0, -128, -128)
+}
+point_count = 5
+
+[node name="EnemySpawner" type="Path2D"]
+curve = SubResource("Curve2D_fvll5")
+script = ExtResource("1_nsh0i")
+enemy_scenes = Array[PackedScene]([ExtResource("2_5qonk"), ExtResource("3_om22r"), ExtResource("4_bcink")])
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-128, -128)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

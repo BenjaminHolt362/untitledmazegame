@@ -16,7 +16,7 @@ func _physics_process(delta):
 	if global_position.distance_to(spawn_position) >= max_distance:
 		queue_free()
 
-func initialize(spawn_position: Vector2, bullet_direction: Vector2):
-	global_position = spawn_position
+func initialize(spawn_pos: Vector2, bullet_direction: Vector2):
+	global_position = spawn_pos
 	direction = bullet_direction
 	rotation = direction.angle()
