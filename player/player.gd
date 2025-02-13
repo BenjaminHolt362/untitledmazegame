@@ -23,6 +23,7 @@ func _physics_process(delta):
 	if overlapping_mobs.size() > 0:
 		_health -= DAMAGE_RATE * overlapping_mobs.size() * delta
 		%ProgressBar.value = _health
+		$AudioStreamPlayer2D.play()
 		
 		if _health <= 0.0:
 			health_depleted.emit()
@@ -73,6 +74,7 @@ func change_gun(gun: GUNS) -> void:
 
 func shoot() -> void:
 	const BULLET = preload("res://bullet/bullet.tscn")
+	%Gunshot.play()
 	
 	if current_gun == GUNS.SHOTGUN:
 		for rotation in range(-3, 3):
@@ -103,7 +105,6 @@ func _on_pickup_area_area_entered(area: Area2D) -> void:
 		area.queue_free()
 		
 	elif area.is_in_group("shotgunpickup"):
-		print("ATTEMPING TO CHANGE TO SHOTGUN")
 		change_gun(GUNS.SHOTGUN)
 		area.queue_free()
 		

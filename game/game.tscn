@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://tkbss6j561io"]
+[gd_scene load_steps=8 format=3 uid="uid://tkbss6j561io"]
 
 [ext_resource type="PackedScene" uid="uid://c4rr10136c3fa" path="res://player/player.tscn" id="1_f1evh"]
 [ext_resource type="Script" path="res://game/game.gd" id="1_h1umf"]
 [ext_resource type="PackedScene" uid="uid://dht3mhwbccm6o" path="res://pickups/ak47Pickup.tscn" id="3_qh8tq"]
 [ext_resource type="PackedScene" uid="uid://c22yiec62ysfy" path="res://pickups/shotgunPickup.tscn" id="4_p08gt"]
+[ext_resource type="AudioStream" uid="uid://b8x3x0m8qvtq" path="res://sounds/music.mp3" id="5_du6y4"]
 
 [sub_resource type="Curve2D" id="Curve2D_fqpfy"]
 _data = {
@@ -90,6 +91,10 @@ position = Vector2(370, 278)
 
 [node name="ShotgunPickup" parent="." instance=ExtResource("4_p08gt")]
 position = Vector2(1434, 760)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_du6y4")
+volume_db = -15.0
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

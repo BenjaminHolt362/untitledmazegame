@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://c4rr10136c3fa"]
+[gd_scene load_steps=45 format=3 uid="uid://c4rr10136c3fa"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_qw5vf"]
 [ext_resource type="Texture2D" uid="uid://bfdmeyqr81fmu" path="res://characters/witch/B_witch_idle.png" id="4_3vai6"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://player/gun.gd" id="6_7f2un"]
 [ext_resource type="Texture2D" uid="uid://b0fbxwgxtqtj0" path="res://guns/pistol.png" id="6_kcupt"]
 [ext_resource type="Texture2D" uid="uid://btu6x4pl4cqs8" path="res://characters/witch/B_witch_run.png" id="7_itbcn"]
+[ext_resource type="AudioStream" uid="uid://2137lxh8xnyo" path="res://sounds/gunshot.wav" id="8_1uy2w"]
+[ext_resource type="AudioStream" uid="uid://dkxgdialirqj5" path="res://sounds/hurt.wav" id="9_vbwqe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m245r"]
 radius = 29.0
@@ -313,11 +315,20 @@ position = Vector2(75, -27.907)
 unique_name_in_owner = true
 wait_time = 0.5
 
+[node name="Gunshot" type="AudioStreamPlayer2D" parent="Gun"]
+unique_name_in_owner = true
+position = Vector2(-56, 40)
+stream = ExtResource("8_1uy2w")
+volume_db = -20.0
+
 [node name="PickupArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 position = Vector2(1, -48)
 shape = SubResource("CapsuleShape2D_6hi0j")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_vbwqe")
 
 [connection signal="health_depleted" from="." to="Gun" method="_on_player_health_depleted"]
 [connection signal="timeout" from="Gun/GunTimer" to="." method="_on_gun_timer_timeout"]

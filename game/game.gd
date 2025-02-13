@@ -1,5 +1,7 @@
 extends Node2D
 
+func _ready():
+	$AudioStreamPlayer2D.play()
 
 func spawn_mob() -> void:
 	var _new_mob = preload("res://ghost/ghost.tscn").instantiate()
