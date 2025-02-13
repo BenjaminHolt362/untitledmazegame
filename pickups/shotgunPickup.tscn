@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c22yiec62ysfy"]
+
+[ext_resource type="Texture2D" uid="uid://bhqeqxuj7coxn" path="res://guns/shotgun.png" id="1_acg35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u707y"]
+size = Vector2(160, 88)
+
+[node name="ShotgunPickup" type="Area2D" groups=["shotgunpickup"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["shotgunpickup"]]
+texture = ExtResource("1_acg35")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["shotgunpickup"]]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_u707y")

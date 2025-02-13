@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://tkbss6j561io"]
+[gd_scene load_steps=7 format=3 uid="uid://tkbss6j561io"]
 
 [ext_resource type="PackedScene" uid="uid://c4rr10136c3fa" path="res://player/player.tscn" id="1_f1evh"]
 [ext_resource type="Script" path="res://game/game.gd" id="1_h1umf"]
+[ext_resource type="PackedScene" uid="uid://dht3mhwbccm6o" path="res://pickups/ak47Pickup.tscn" id="3_qh8tq"]
+[ext_resource type="PackedScene" uid="uid://c22yiec62ysfy" path="res://pickups/shotgunPickup.tscn" id="4_p08gt"]
 
 [sub_resource type="Curve2D" id="Curve2D_fqpfy"]
 _data = {
@@ -82,6 +84,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 60
 text = "Retry"
+
+[node name="Ak47Pickup" parent="." instance=ExtResource("3_qh8tq")]
+position = Vector2(370, 278)
+
+[node name="ShotgunPickup" parent="." instance=ExtResource("4_p08gt")]
+position = Vector2(1434, 760)
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

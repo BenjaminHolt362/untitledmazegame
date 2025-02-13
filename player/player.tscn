@@ -1,10 +1,11 @@
-[gd_scene load_steps=41 format=3 uid="uid://c4rr10136c3fa"]
+[gd_scene load_steps=43 format=3 uid="uid://c4rr10136c3fa"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_qw5vf"]
-[ext_resource type="PackedScene" uid="uid://c7uddbh2wv3n4" path="res://pistol/pistol.tscn" id="3_fla00"]
 [ext_resource type="Texture2D" uid="uid://bfdmeyqr81fmu" path="res://characters/witch/B_witch_idle.png" id="4_3vai6"]
 [ext_resource type="Texture2D" uid="uid://d16te5k5m3ci4" path="res://characters/witch/B_witch_death.png" id="4_pemup"]
 [ext_resource type="Texture2D" uid="uid://q52vugfmjhn5" path="res://characters/witch/B_witch_take_damage.png" id="5_l658f"]
+[ext_resource type="Script" path="res://player/gun.gd" id="6_7f2un"]
+[ext_resource type="Texture2D" uid="uid://b0fbxwgxtqtj0" path="res://guns/pistol.png" id="6_kcupt"]
 [ext_resource type="Texture2D" uid="uid://btu6x4pl4cqs8" path="res://characters/witch/B_witch_run.png" id="7_itbcn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m245r"]
@@ -253,17 +254,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6hi0j"]
+radius = 64.0
+height = 128.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_qw5vf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -8)
 shape = SubResource("CircleShape2D_m245r")
-
-[node name="Pistol" parent="." instance=ExtResource("3_fla00")]
-unique_name_in_owner = true
-position = Vector2(67, -31)
-scale = Vector2(0.05, 0.05)
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -287,9 +287,38 @@ value = 100.0
 show_percentage = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(3, -53)
+position = Vector2(0, -64)
 scale = Vector2(4.39188, 3.70958)
 sprite_frames = SubResource("SpriteFrames_ajlet")
 animation = &"die"
 
-[connection signal="health_depleted" from="." to="Pistol" method="_on_player_health_depleted"]
+[node name="Gun" type="Node2D" parent="."]
+position = Vector2(56, -40)
+script = ExtResource("6_7f2un")
+
+[node name="WeaponPivot" type="Marker2D" parent="Gun"]
+unique_name_in_owner = true
+
+[node name="GunSprite" type="Sprite2D" parent="Gun/WeaponPivot"]
+unique_name_in_owner = true
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(0.426667, 0.286667)
+texture = ExtResource("6_kcupt")
+
+[node name="ShootingPoint" type="Marker2D" parent="Gun/WeaponPivot/GunSprite"]
+unique_name_in_owner = true
+position = Vector2(75, -27.907)
+
+[node name="GunTimer" type="Timer" parent="Gun"]
+unique_name_in_owner = true
+wait_time = 0.5
+
+[node name="PickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(1, -48)
+shape = SubResource("CapsuleShape2D_6hi0j")
+
+[connection signal="health_depleted" from="." to="Gun" method="_on_player_health_depleted"]
+[connection signal="timeout" from="Gun/GunTimer" to="." method="_on_gun_timer_timeout"]
+[connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dht3mhwbccm6o"]
+
+[ext_resource type="Texture2D" uid="uid://dlrc516538q3n" path="res://guns/ak47.png" id="1_4extc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulucy"]
+size = Vector2(144, 144)
+
+[node name="Ak47Pickup" type="Area2D" groups=["ak47pickup"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["ak47pickup"]]
+texture = ExtResource("1_4extc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["ak47pickup"]]
+position = Vector2(-8, -8)
+shape = SubResource("RectangleShape2D_ulucy")
